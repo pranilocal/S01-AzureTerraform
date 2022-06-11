@@ -24,8 +24,19 @@ stages:
       inputs:
         containerRegistry: 'pranilocal docker hub'
         repository: 'pranilocal/weatherapi'
-        command: 'buildAndPush'
+        command: 'build'
         Dockerfile: '**/Dockerfile'
         tags: |
           $(tag)
-  
+
+  - job: Push
+    dependsOn: Build
+    displayName: Push
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'pranilocal docker hub'
+        repository: 'pranilocal/weatherapi'
+        command: 'push'
