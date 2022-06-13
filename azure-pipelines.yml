@@ -25,6 +25,6 @@ stages:
         containerRegistry: 'pranilocal docker hub'
         repository: 'pranilocal/weatherapi'
         command: 'buildAndPush'
-        Dockerfile: '/Dockerfile'
+        Dockerfile: '.pipeline/Dockerfile'
         tags: |
           $(tag)
