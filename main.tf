@@ -5,6 +5,14 @@ provider "azurerm" {
     }
 }
 
+terraform {
+  backend "azurerm"{
+    resource_group_name = "tf_rg_blobstorage"
+    storage_account_name = "pranilocaltfstorage"
+    container_name ="tfstatecontainer"
+    key = "terraform.tfstate"
+  }
+}
 resource "azurerm_resource_group" "tf_rgroup" {
   name = "rg-learn-devops"
   location = "Central India"
