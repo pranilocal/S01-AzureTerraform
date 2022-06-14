@@ -33,7 +33,7 @@ stages:
           $(tag)
 - stage: Provision
   displayName: "Terraforming on Azure.."
-  despendsOn: Build
+  dependsOn: Build
   jobs:
   - job: Provision
     displayName: "Provision Container Instance"
@@ -42,7 +42,7 @@ stages:
     variables:
     - group: Terraform Creds
     steps:
-    - scripts: |
+    - script: |
         set -e
 
         terraform init -input=false
