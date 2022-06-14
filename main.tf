@@ -13,6 +13,11 @@ terraform {
     key = "terraform.tfstate"
   }
 }
+
+variable "tfimagevers" {
+  type = string
+  description = "Latest Image Build"
+}
 resource "azurerm_resource_group" "tf_rgroup" {
   name = "rg-learn-devops"
   location = "Central India"
@@ -29,7 +34,7 @@ resource "azurerm_container_group" "tfcg_test" {
 
   container {
     name = "weatherapi"
-    image = "pranilocal/weatherapi"
+    image = "pranilocal/weatherapi:${var.tfimagevers}"
     cpu = "1"
     memory = "1"
 
